@@ -10,8 +10,8 @@ const { default: mongoose } = require("mongoose");
 exports.signup = async (req, res) => {
   let user;
   let result;
-  const { name, email, password } = req.body;
-  if (!email || !name || !password)
+  const { name, email, password,username } = req.body;
+  if (!email || !name || !password || !username)
     return res
       .status(400)
       .json({ success: false, errror: "Name, email and password are requied" });
@@ -30,6 +30,7 @@ exports.signup = async (req, res) => {
       name,
       email,
       password,
+      username,
       photo: {
         id: result?.public_id,
         secure_url: result?.secure_url,
